@@ -12,4 +12,5 @@ const mix = require('laravel-mix');
  */
 
 mix.js('resources/js/app.js', 'public/js')
-    .sass('resources/sass/app.scss', 'public/css');
+   .js('resources/js/delete_brand.js', 'public/js/delete_brand.js')
+   .sass('resources/sass/app.scss', 'public/css');

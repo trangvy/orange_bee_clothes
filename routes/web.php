@@ -18,3 +18,10 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('admin/brands', 'Admin\BrandController@index')->name('admin.brand.index');
+Route::get('/admin/brands/create', 'Admin\BrandController@create')->name('admin.brand.create');
+Route::post('admin/brands/{brand}', 'Admin\BrandController@update')->name('admin.brand.update');
+Route::get('admin/brands/{brand}/edit', 'Admin\BrandController@edit')->name('admin.brand.edit');
+Route::post('/admin/brands', 'Admin\BrandController@store')->name('admin.brand.store');
+Route::delete('admin/brands/{brand}', 'Admin\BrandController@destroy')->name('admin.brand.destroy');
