@@ -175,6 +175,11 @@ return [
             'url'  => 'admin/brands',
             'icon' => 'lock',
         ],
+        [
+            'text' => 'Category',
+            'url'  => 'admin/categories',
+            'icon' => 'lock',
+        ],
         'LABELS',
         [
             'text'       => 'Important',

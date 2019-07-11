@@ -9,8 +9,8 @@
         <div class="row justify-content-center">
             <div class="col-md-10">
                 <div class="card">
-                    <div class="card-header">{{ __('brand.brand_list') }}</div>
-                    <a href="/admin/brands/create" class="btn btn-info" role="button" style="margin-bottom:20px;">{{ __('brand.create') }}</a>
+                    <div class="card-header">{{ __('category.category_list') }}</div>
+                    <a href="/admin/categories/create" class="btn btn-info" role="button" style="margin-bottom:20px;">{{ __('category.create') }}</a>
                     <div class="card-body">
                         @if (session('status'))
                             <div class="alert alert-warning" role="alert">
@@ -25,18 +25,18 @@
                             <thead>
                             <tr>
                                 <th scope="col">#</th>
-                                <th scope="col">{{ __('brand.name') }}</th>
-                                <th scope="col">{{ __('brand.action') }}</th>
+                                <th scope="col">{{ __('category.name') }}</th>
+                                <th scope="col">{{ __('category.action') }}</th>
                             </tr>
                             </thead>
                             <tbody>
-                                @foreach ($brands as $brand)
-                                    <tr class="row_{{ $brand->id }}">
-                                    <th scope="row">{{ $brand->id }}</th>
-                                        <td>{{ $brand->name }}</td>
+                                @foreach ($categories as $category)
+                                    <tr class="row_{{ $category->id }}">
+                                    <th scope="row">{{ $category->id }}</th>
+                                        <td>{{ $category->name }}</td>
                                         <td>
-                                            <a href="brands/{{ $brand->id }}/edit" class="btn btn-info" role="button">{{ __('brand.edit') }}</a>
-                                            <div id="btn-del-brand" class="btn btn-info btn-del-brand" role="button" data-brand-id="{{ $brand->id }}">{{ __('brand.delete') }}</div>
+                                            <a href="categories/{{ $category->id }}/edit" class="btn btn-info" role="button">{{ __('category.edit') }}</a>
+                                            <div id="btn-del-category" class="btn btn-info btn-del-category" role="button" data-category-id="{{ $category->id }}">{{ __('category.delete') }}</div>
                                         </td>
                                     </tr>
                                 @endforeach
@@ -51,5 +51,5 @@
 @endsection
 
 @section('js')
-    <script src="{{ asset('js/delete_brand.js') }}"></script>
+    <script src="{{ asset('js/delete_category.js') }}"></script>
 @endsection

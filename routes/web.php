@@ -19,9 +19,21 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('admin/brands', 'Admin\BrandController@index')->name('admin.brand.index');
-Route::get('/admin/brands/create', 'Admin\BrandController@create')->name('admin.brand.create');
-Route::post('admin/brands/{brand}', 'Admin\BrandController@update')->name('admin.brand.update');
-Route::get('admin/brands/{brand}/edit', 'Admin\BrandController@edit')->name('admin.brand.edit');
-Route::post('/admin/brands', 'Admin\BrandController@store')->name('admin.brand.store');
-Route::delete('admin/brands/{brand}', 'Admin\BrandController@destroy')->name('admin.brand.destroy');
+
+Route::group(['prefix'=>'/admin'],function() {
+	Route::namespace('Admin')->group(function () {
+		Route::get('/brands', 'BrandController@index')->name('admin.brand.index');
+		Route::get('/brands/create', 'BrandController@create')->name('admin.brand.create');
+		Route::post('/brands/{brand}', 'BrandController@update')->name('admin.brand.update');
+		Route::get('/brands/{brand}/edit', 'BrandController@edit')->name('admin.brand.edit');
+		Route::post('/brands', 'BrandController@store')->name('admin.brand.store');
+		Route::delete('/brands/{brand}', 'BrandController@destroy')->name('admin.brand.destroy');
+
+		Route::get('/categories', 'CategoryController@index')->name('admin.category.index');
+		Route::get('/categories/create', 'CategoryController@create')->name('admin.category.create');
+		Route::post('categories/{category}', 'CategoryController@update')->name('admin.category.update');
+		Route::get('/categories/{category}/edit', 'CategoryController@edit')->name('admin.category.edit');
+		Route::post('/categories', 'CategoryController@store')->name('admin.category.store');
+		Route::delete('/categories/{category}', 'CategoryController@destroy')->name('admin.category.destroy');
+	});
+});
