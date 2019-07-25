@@ -20,7 +20,7 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 
-Route::group(['prefix'=>'/admin'],function() {
+Route::group(['prefix' => 'admin'],function() {
 	Route::namespace('Admin')->group(function () {
 		Route::get('/brands', 'BrandController@index')->name('admin.brand.index');
 		Route::get('/brands/create', 'BrandController@create')->name('admin.brand.create');
