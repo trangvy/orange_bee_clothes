@@ -171,6 +171,11 @@ return [
             ],
         ],
         [
+            'text' => 'Post',
+            'url'  => 'admin/posts',
+            'icon' => 'lock',
+        ],
+        [
             'text' => 'Brand',
             'url'  => 'admin/brands',
             'icon' => 'lock',

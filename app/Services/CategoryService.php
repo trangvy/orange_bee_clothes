@@ -1,6 +1,6 @@
 <?php
 namespace App\Services;
-use App\Category;
+use App\Models\Category;
 class CategoryService
 {
     public function store($data) { 
@@ -31,7 +31,7 @@ class CategoryService
             $category->delete();
             $del = true;
         } catch (\Exception $e) {
-            $del = false;
+            
         }
 
         return $del;

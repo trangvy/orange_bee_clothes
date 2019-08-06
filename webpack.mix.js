@@ -14,6 +14,8 @@ const mix = require('laravel-mix');
 mix.js('resources/js/app.js', 'public/js')
    .js('resources/js/delete_brand.js', 'public/js/delete_brand.js')
    .js('resources/js/delete_category.js', 'public/js/delete_category.js')
+   .js('resources/js/delete_post.js', 'public/js/delete_post.js')
+   .js('resources/js/upload-image.js', 'public/js/upload-image.js')
    .sass('resources/sass/app.scss', 'public/css')
 
    .copy('resources/js/jquery.js', 'public/js')
