@@ -92,4 +92,28 @@ class PostController extends Controller
         
         return $result;
     }
+
+        /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy($id) {
+        try {
+            $post = Post::find($id);
+            $post->delete();
+            $result = [
+                'status' => true,
+                'msg' => 'Delete success',
+            ];
+        } catch (Exception $e) {
+            $result = [
+                'status' => false,
+                'msg' => 'Delete fail',
+            ];
+        }
+
+        return response()->json($result);
+    }
 }

@@ -60,4 +60,3 @@
 @section('js')
     <script src="{{ asset('js/delete_post.js') }}"></script>
 @endsection
-

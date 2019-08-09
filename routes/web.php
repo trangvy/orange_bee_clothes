@@ -37,4 +37,9 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin'], function () {
     Route::get('/posts', 'PostController@index')->name('admin.post.index');
 	Route::get('/posts/create', 'PostController@create')->name('admin.post.create');
 	Route::post('/posts', 'PostController@store')->name('admin.post.store');
+	Route::post('/posts/create', 'UploadImage@store')->name('admin.upimage.store');
+	Route::delete('/posts/{post}', 'PostController@destroy')->name('admin.post.destroy');
 });
+
+Route::get('/posts', 'Customer\PostController@index')->name('customer.post.index');
+Route::get('/posts/{post}', 'Customer\PostController@show')->name('customer.post.show');
