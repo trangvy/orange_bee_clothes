@@ -43,3 +43,5 @@ mix.js('resources/js/app.js', 'public/js')
    .copy('resources/rs-plugin/assets/', 'public/assets/')
    .copy('resources/rs-plugin/css/settings.css', 'public/css/settings.css')
 
+    .js('resources/js/cart.js', 'public/js')
+    .js('resources/js/add_to_cart.js', 'public/js')

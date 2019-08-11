@@ -188,37 +188,35 @@
                                 <ul>
                                     <li>
                                        <div class="shopping-cart">
-                                           <a href="#"><i class="fa fa-shopping-cart"></i>
-                                           <span class="cart-count">2</span></a>
+                                           <a href="{{ route('cart.shoppingCart') }}"><i class="fa fa-shopping-cart"></i>
+                                           <span class="cart-count">{{ session('cart') ? session('cart')->totalQuantity : '' }}</span></a>
                                        </div>
                                         <div class="mini-cart-content">
-                                            <div class="cart-img-details">
-                                                <div class="cart-img-photo">
-                                                    <a href="#"><img src="{{ asset('images/sale2.jpg') }}" alt="sale"></a>
-                                                    <span class="quantity">1</span>
-                                                </div>
-                                                <div class="cart-img-contaent">
-                                                    <a href="#"><p>Vestibulum suscipit</p></a>
-                                                    <span>£165.00</span>
-                                                </div>
-                                                <div class="pro-del"><a href="#"><i class="fa fa-times-circle"></i></a></div>
-                                            </div>
-                                            <div class="clear"></div>
-                                            <div class="cart-img-details">
-                                                <div class="cart-img-photo">
-                                                    <a href="#"><img src="{{ asset('images/sale4.jpg') }}" alt="sale"></a>
-                                                    <span class="quantity">1</span>
-                                                </div>
-                                                <div class="cart-img-contaent">
-                                                    <a href="#"><p>Donec sodales mauris in</p></a>
-                                                    <span>£50.00</span>
-                                                </div>
-                                                <div class="pro-del"><a href="#"><i class="fa fa-times-circle"></i></a></div>
+                                            <div class="cart-product">
+                                                @if(Session::has('cart'))
+                                                    @foreach(session('cart')->items as $item)
+                                                        <div class="cart-img-details  row_{{ $item['item']->id }}">
+                                                            <div class="cart-img-photo">
+                                                                <a href="#" class="image"><img src="{{ asset(config('product.image_path') . $item['item']->image) }}"></a>
+                                                                <span class="quantity quantity_{{ $item['item']->id }}">{{ $item['quantity']}}</span>
+                                                            </div>
+                                                            <div class="cart-img-contaent">
+                                                                <a href="#" class="name"><p>{{ $item['item']->name }}</p></a>
+                                                                <span class="price_{{ $item['item']->id }}">{{ $item['price'] }}</span>
+                                                            </div>
+                                                            <div class="pro-del">
+                                                                <a class="cart_quantity_delete" data-product-id="{{ $item['item']->id }}" role="button">
+                                                                    <i class="fa fa-times-circle"></i>
+                                                                </a>
+                                                            </div>
+                                                        </div>
+                                                    @endforeach
+                                                @endif
                                             </div>
                                             <div class="cart-inner-bottom">
-                                                <p class="total">Subtotal: <span class="amount">£215.00</span></p>
+                                                <p class="total">{{ __('cart.total') }}: <span class="amount">{{ session('cart') ? session('cart')->totalPrice : '' }}</span></p>
                                                 <div class="clear"></div>
-                                                <p class="cart-button-top"><a href="#">Checkout</a></p>
+                                                <p class="cart-button-top"><a href="#">{{ __('cart.checkout') }}</a></p>
                                             </div>
                                         </div>
                                     </li>

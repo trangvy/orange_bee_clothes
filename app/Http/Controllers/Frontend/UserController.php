@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Customer;
+namespace App\Http\Controllers\Frontend;
 
 use App\Models\User;
 use App\Http\Requests\UpdateUser;

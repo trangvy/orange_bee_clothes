@@ -1,6 +1,8 @@
 {
+    "/js/add_to_cart.js": "/js/add_to_cart.js",
     "/js/app.js": "/js/app.js",
     "/css/app.css": "/css/app.css",
+    "/js/cart.js": "/js/cart.js",
     "/js/delete_brand.js": "/js/delete_brand.js",
     "/js/delete_category.js": "/js/delete_category.js",
     "/js/delete_post.js": "/js/delete_post.js",
