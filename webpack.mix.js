@@ -43,5 +43,11 @@ mix.js('resources/js/app.js', 'public/js')
    .copy('resources/rs-plugin/assets/', 'public/assets/')
    .copy('resources/rs-plugin/css/settings.css', 'public/css/settings.css')
 
-    .js('resources/js/cart.js', 'public/js')
-    .js('resources/js/add_to_cart.js', 'public/js')
+   .js('resources/js/cart.js', 'public/js')
+   .js('resources/js/add_to_cart.js', 'public/js')
+   .js('resources/js/admin_product.js', 'public/js/admin_product.js')
+   .js('resources/js/admin_attribute.js', 'public/js/admin_attribute.js')
+   .js('resources/js/product.js', 'public/js/product.js')
+
+   .styles('resources/css/orange_style.css', 'public/css/orange_style.css')
+

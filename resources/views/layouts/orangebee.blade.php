@@ -26,7 +26,6 @@
     <body class="vsc-initialized">
         <!--/header-->
         @include("layouts.elements.header")
-        @include("layouts.elements.slider")
         <section>
             <div class="container">
                 @yield('content')
