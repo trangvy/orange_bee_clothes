@@ -11,13 +11,13 @@
                 <div class="product_img_tab clearfix">
                    <div class="product_main_img tab-content">
                        <div id="one" role="tabpanel"  class="p_tab_img active">
-                           <a href="#"><img id="zoom_01" src="{{ asset(config('products.image_path') . $product->image) }}" data-zoom-image="{{ asset(config('products.image_path') . $product->image) }}" alt=""></a>
+                           <a href="#"><img id="zoom_01" src="{{ asset(config('product.image_path') . $product->image) }}" data-zoom-image="{{ asset(config('product.image_path') . $product->image) }}" alt=""></a>
                        </div>
                    </div>
                    <div class="product_img_list">
                        <ul role="tablist">
                             @foreach( $imageLists as $image)
-                               <li role="presentation" class="active"><a href="#one" aria-controls="one" role="tab" data-toggle="tab"><img src="{{ asset(config('products.image_path') . $image) }}" alt=""></a></li>
+                               <li role="presentation" class="active"><a href="#one" aria-controls="one" role="tab" data-toggle="tab"><img src="{{ asset(config('product.image_path') . $image) }}" alt=""></a></li>
                             @endforeach
                        </ul>
                    </div>
@@ -26,7 +26,8 @@
             <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
                 <div class="product_detail">
                     <div class="product_title">
-                        <h2>{{ $product->name }}</h2><br>
+
+                        <h2>{{ $product->name }}</h2><br>                        
                         <a href="#"><i class="fa fa-star"></i></a>
                         <a href="#"><i class="fa fa-star"></i></a>
                         <a href="#"><i class="fa fa-star"></i></a>

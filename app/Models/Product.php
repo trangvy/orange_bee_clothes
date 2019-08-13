@@ -41,4 +41,8 @@ class Product extends Model
     public function sizes() {
         return $this->belongsToMany('App\Models\Size', 'product_attributes', 'product_id', 'size_id')->withPivot('attribute_quantity', 'attribute_image');
     }
+
+    public function attributes() {
+        return $this->hasMany('App\Models\ProductAttribute');
+    }
 }

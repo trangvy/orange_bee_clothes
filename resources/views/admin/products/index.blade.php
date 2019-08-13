@@ -60,7 +60,7 @@
                                         @endswitch
                                     </td>
                                     <td class="action-admin">
-                                        <a href="product/{{ $product->id }}/edit" class="btn btn-info" role="button">Edit</a>
+                                        <a href="products/{{ $product->id }}/edit" class="btn btn-info" role="button">Edit</a>
                                       <a href="#" class="btn btn-danger btn-del-product" role="button" data-product-id="{{ $product->id }}">Delete</a>
                                     </td>
                                 </tr>

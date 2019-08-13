@@ -103,4 +103,39 @@ $(document).ready(function(){
         moreAttribute.removeClass("hidden");
         $('.attribute-value').append(moreAttribute);
     });
+
+    $('.remove-single-image').click(function() {
+        $('.single-image').hide();
+        $(this).hide();
+    });
+
+    $('.remove-attribute-image').click(function() {
+        var id = $(this).data('id');
+        $('.attribute-image-' + id).hide();
+        $(this).hide();
+    });
+
+    $('#image').change(function(e){
+      if ($('#image').get(0).files.length != 0) {
+            $('.single-image').hide();
+            $('.remove-single-image').hide();
+        }
+    });
+    
+    $('.remove-multi-image').click(function() {
+        var id = $(this).data('id');
+        $('.image_' + id).hide();
+        $(this).hide();
+        var imageDelete = $('#image-delete').val();
+        var newlist;
+
+        if (imageDelete === '') {
+            newlist = $(this).data('file-name');
+
+        } else {
+            newlist = imageDelete + ',' + $(this).data('file-name');
+        }
+        
+        $('#image-delete').attr('value', newlist);
+    });
 });

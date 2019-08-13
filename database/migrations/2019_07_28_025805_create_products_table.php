@@ -27,7 +27,7 @@ class CreateProductsTable extends Migration
             $table->integer('delete_shop');
             $table->integer('count_buy');
             $table->integer('count_view');
-            $table->string('description');
+            $table->string('description')->nullable();;
             $table->timestamps();
         });
     }

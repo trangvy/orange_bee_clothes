@@ -17,7 +17,7 @@
             <div class="col-md-8">
                 <div class="box box-info">
                     <!-- form start -->
-                    <form method="POST" action="{{ route('product.store') }}" enctype="multipart/form-data" class="form-horizontal">
+                    <form method="POST" action="{{ route('product.update',  $product->id) }}" enctype="multipart/form-data" class="form-horizontal">
                         @csrf
                         <div class="box-body">                    
                             <div class="form-group {{ $errors->has('name') ? 'has-error' : '' }} ">
@@ -29,7 +29,7 @@
                                 </label>
 
                                 <div class="col-sm-9">
-                                    <input id="name" type="text" class="form-control" id="{{ $errors->has('name') ? 'inputError' : '' }}" name="name" value="{{ old('name') }}" autofocus>
+                                    <input id="name" type="text" class="form-control" id="{{ $errors->has('name') ? 'inputError' : '' }}" name="name" value="{{ $product->name }}" autofocus>
 
                                     @if ($errors->has('name'))
                                     <span class="help-block">{{ $errors->first('name') }}</span>
@@ -46,7 +46,7 @@
                                 </label>
 
                                 <div class="col-sm-9">
-                                    <input id="sku" type="text" class="form-control" id="{{ $errors->has('sku') ? 'inputError' : '' }}" name="sku" value="{{ old('sku') }}" autofocus>
+                                    <input id="sku" type="text" class="form-control" id="{{ $errors->has('sku') ? 'inputError' : '' }}" name="sku" value="{{ $product->sku }}" autofocus>
 
                                     @if ($errors->has('sku'))
                                     <span class="help-block">{{ $errors->first('sku') }}</span>
@@ -64,9 +64,9 @@
 
                                 <div class="col-sm-9">
                                     <select class="form-control select2" data-placeholder="Select a Category"
-                                        style="width: 100%;"id="{{ $errors->has('category_id') ? 'inputError' : 'category_id' }}" name="category_id" value="{{ old('category_id') }}">
+                                        style="width: 100%;"id="{{ $errors->has('category_id') ? 'inputError' : 'category_id' }}" name="category_id" value="{{ $product->category->id }}">
                                     @foreach ($categories as $category)  
-                                        <option value="{{ $category->id }}" <?php if (old('category_id') == $category->id) echo "selected" ?>>{{ $category->name}}</option>
+                                        <option value="{{ $category->id }}" <?php if ($product->category->id == $category->id) echo "selected" ?>>{{ $category->name}}</option>
                                     @endforeach
                                     </select>                               
                                     @if ($errors->has('category_id'))
@@ -85,9 +85,9 @@
 
                                 <div class="col-sm-9">
                                     <select class="form-control select2" data-placeholder="Select a Brand"
-                                        style="width: 100%;"id="{{ $errors->has('brand_id') ? 'inputError' : 'brand_id' }}" name="brand_id" value="{{ old('brand_id') }}">
+                                        style="width: 100%;"id="{{ $errors->has('brand_id') ? 'inputError' : 'brand_id' }}" name="brand_id" value="{{ $product->brand->id }}">
                                     @foreach ($brands as $brand)  
-                                        <option value="{{ $brand->id }}" <?php if (old('brand_id') == $brand->id) echo "selected" ?>>{{ $brand->name}}</option>
+                                        <option value="{{ $brand->id }}" <?php if ($product->brand->id == $brand->id) echo "selected" ?>>{{ $brand->name}}</option>
                                     @endforeach
                                     </select>
 
@@ -106,7 +106,7 @@
                                 </label>
 
                                 <div class="col-sm-9">
-                                    <input type="text" class="form-control" id=" {{ $errors->has('price') ? 'inputError' : 'price' }}" name="price" value="{{ old('price') }}">
+                                    <input type="text" class="form-control" id=" {{ $errors->has('price') ? 'inputError' : 'price' }}" name="price" value="{{ $product->price }}">
 
                                     @if ($errors->has('price'))
                                     <span class="help-block">{{ $errors->first('price') }}</span>
@@ -123,7 +123,11 @@
                                 </label>
 
                                 <div class="col-sm-9">
-                                    <input type="file"  name="image" class="form-control-file" id="image">
+                                    <div data-field-name="image">
+                                        <span href="#" class="remove-single-image" style="position:absolute;"><i class=" fa fa-remove "></i></span>
+                                        <img class="single-image" src="{{ asset(config('product.image_path') . $product->image ) }}" data-file-name="$product->image" data-id="1">
+                                    </div>
+                                    <input type="file"  name="image" value="{{ old('image', $product->image) }}" class="form-control-file" id="image">
 
                                     @if ($errors->has('image'))
                                     <span class="help-block">{{ $errors->first('image') }}</span>
@@ -136,12 +140,22 @@
                                     @if ($errors->has('images_detail'))
                                         <i class="fa fa-times-circle-o"></i> 
                                     @endif
-                                    {{ __('Images Detail') }}
+                                    {{ __('Image Detail') }}
                                 </label>
 
                                 <div class="col-sm-9">
-                                    <input type="file" name="images_detail[]" multiple>
-
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                        @foreach ($imageLists as $key=>$img)                                 
+                                            <div class="img_settings_container" data-field-name="images" style="float:left;padding-right:15px;">
+                                                <span href="#" class="remove-multi-image" data-id="{{ $key }}" style="position: absolute;" data-file-name="{{ $img }}"><i class=" fa fa-remove "></i></span>
+                                                <img class="multi_image image_{{ $key }}" src="{{ asset(config('product.image_path') . $img ) }}">
+                                            </div>
+                                        @endforeach
+                                        </div>
+                                    </div>
+                                    <input type="text" name="image_delete" value="" hidden id="image-delete">
+                                    <input type="file" name="images_detail[]" multiple id="images_detail">
                                     @if ($errors->has('images_detail'))
                                     <span class="help-block">{{ $errors->first('images_detail') }}</span>
                                     @endif
@@ -157,7 +171,7 @@
                                 </label>
 
                                 <div class="col-sm-9">
-                                    <textarea id="description" type="textarea" row=4 class="form-control" id="{{ $errors->has('description') ? 'inputError' : '' }}" name="description" value="{{ old('description') }}" autofocus>                           
+                                    <textarea id="description" type="textarea" row=4 class="form-control" id="{{ $errors->has('description') ? 'inputError' : '' }}" name="description" value="{{ $product->description }}" autofocus>                           
                                     </textarea>
                                     @if ($errors->has('description'))
                                     <span class="help-block">{{ $errors->first('description') }}</span>
@@ -179,14 +193,16 @@
                                     <span>Image</span>
                                 </div>
                             </div>
-                            <div class="attribute-value">
-                                <div class="first-row col-sm-12">
+                            <div class="attribute-value">                                
+                                @foreach ($product->attributes as $attribute)
+                                    <div class="first-row col-sm-12">
+                                        <input type="text" hidden name="attribute_id[]" value="{{ $attribute->id }}">
                                     <div class="col-sm-3">
                                         <div class="form-group {{ $errors->has('color_id[]') ? 'has-error' : '' }} ">
                                             <div class="col-sm-12">
-                                                <select class="form-control" name="color_id[]">
+                                                <select class="form-control" name="color_id[]" value="{{ $attribute->color_id }}">
                                                     @foreach ($colors as $color)  
-                                                        <option value="{{$color->id}}">{{ $color->name}}</option>
+                                                        <option value="{{$color->id}}" <?php if ($attribute->color_id == $color->id) echo "selected" ?>>{{ $color->name}}</option>
                                                     @endforeach
                                                 </select>
                                             </div>
@@ -195,9 +211,9 @@
                                     <div class="col-sm-3">
                                         <div class="form-group">
                                             <div class="col-sm-12">
-                                                <select class="form-control" name="size_id[]">
+                                                <select class="form-control" name="size_id[]" value="{{ $attribute->size_id }}">
                                                 @foreach ($sizes as $size)  
-                                                    <option value="{{ $size->id }}">{{ $size->name}}</option>
+                                                    <option value="{{ $size->id }}" <?php if ($attribute->size_id == $size->id) echo "selected" ?>>{{ $size->name}}</option>
                                                 @endforeach
                                                 </select>
                                             </div>
@@ -209,18 +225,24 @@
                                                 <input 
                                                     type="number" 
                                                     class="form-control" 
-                                                    name="attribute_quantity[]">
+                                                    name="attribute_quantity[]"
+                                                    value="{{ $attribute->attribute_quantity }}">
                                             </div>
                                         </div>
                                     </div>
                                     <div class="col-sm-3">
                                         <div class="form-group">
                                             <div class="col-sm-12">
+                                                <div data-field-name="image">
+                                                    <span href="#" class="remove-attribute-image" data-id="{{ $attribute->id }}" style="position:absolute;"><i class=" fa fa-remove "></i></span>
+                                                    <img class="multi_image attribute-image-{{ $attribute->id }}" src="{{ asset(config('product.image_path') . $attribute->attribute_image ) }}" data-file-name="$product->image"  >
+                                                </div>
                                                 <input type="file"  name="attribute_image[]" class="form-control-file">
                                             </div>
                                         </div>
                                     </div>
                                 </div>
+                                @endforeach
                             </div>                            
                             
                             <div class="col-md-4">
@@ -230,7 +252,7 @@
                         <!-- /.box-body -->
                         <div class="box-footer">
                             <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary pull-right">{{ __('Create') }}</button>
+                                <button type="submit" class="btn btn-primary pull-right">{{ __('Update') }}</button>
                             </div>                          
                         </div>
                         <!-- /.box-footer -->                     

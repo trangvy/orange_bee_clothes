@@ -5,3 +5,29 @@
 .attribute-label span {
     font-weight: bold;
 }
+
+.single-image {
+    max-width:150px;
+    height:auto;
+    clear:both;
+    display:block;
+    padding:2px;
+    border:1px solid #ddd;
+    margin-bottom:10px;
+}
+.multi_image {
+    max-width:50px;
+    height:auto;
+    clear:both;
+    display:block;
+    padding:2px;
+    border:1px solid #ddd;
+    margin-bottom:5px;
+}
+.remove-single-image, .remove-multi-image {
+    color: #72afd2;
+}
+
+.remove-single-image:hover, .remove-multi-image:hover {
+    color:#000;
+}

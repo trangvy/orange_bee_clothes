@@ -30,7 +30,7 @@ class CreateProduct extends FormRequest
             'brand_id' => ['required', 'numeric'],          
             'price' => 'required|max:22|regex:/^\d*(\.\d{1,2})?$/',
             'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:10048',
-            // 'images_detail' => 'required',
+            'images_detail' => 'required',
             // 'color_id.*' => 'required',
             // 'size_id.*' => 'required',
             // 'attribute_image.*' => 'required|image|mimes:jpeg,png,jpg,gif|max:10048',
